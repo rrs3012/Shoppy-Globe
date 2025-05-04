@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -7,82 +7,102 @@ import AttachEmailIcon from '@mui/icons-material/AttachEmail';
 const Body = () => {
   const navigate = useNavigate();
 
+  // Handle browser back/forward navigation to ensure proper rendering
+  useEffect(() => {
+    const handlePopstate = () => {
+      // Force re-render or redirect to current route if needed
+      window.location.reload(); // Simple fix for fresher; can be optimized later
+    };
+
+    window.addEventListener('popstate', handlePopstate);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopstate);
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen flex flex-col items-center px-4 bg-gray-50 text-gray-800">
+    <div className="min-h-screen flex flex-col items-center bg-gradient-to-t from-sky-100 to-white text-blue-900 px-4">
       {/* ========== HERO SECTION ========== */}
-      <section className="w-full text-center max-w-4xl mt-24 animate-fade-slide">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-blue-800 mb-4 leading-tight">
-          EVERYTHING YOU WANT,<br />
-          <span className="text-orange-500">ALL IN ONE PLACE</span>
+      <section className="w-full max-w-7xl mt-12 text-center animate-fade-up">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-900 mb-6 leading-snug tracking-wide">
+          Unleash Your <br />
+          <span className="text-sky-600">Shopping Adventure!</span>
         </h1>
 
-        <p className="text-base sm:text-lg md:text-xl text-gray-700 mb-6">
-          Discover unbeatable deals, just a click away.
+        <p className="text-lg sm:text-xl md:text-2xl text-blue-800 mb-10 max-w-2xl mx-auto font-medium">
+          Dive into epic deals with effortless style, all just a click away.
         </p>
 
         {/* Promo Image */}
-        <div className="w-full max-w-md mx-auto rounded-2xl overflow-hidden shadow-2xl animate-zoom-fade">
+        <div className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-2xl sky-blue-overlay">
           <img
-            src="https://watermark.lovepik.com/photo/40008/0007.jpg_wh1200.jpg"
+            src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da"
             alt="Shopping Banner"
-            className="w-full h-auto object-cover transform transition-transform duration-500 hover:scale-105"
+            className="w-full h-96 object-cover"
           />
         </div>
 
         {/* CTA Button */}
-        <div className="mt-6">
+        <div className="mt-12">
           <button
             onClick={() => navigate('/products')}
-            className="bg-orange-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-orange-600 transition-all duration-300 text-lg font-semibold"
+            className="bg-sky-600 text-white px-10 py-4 rounded-full shadow-lg hover:bg-sky-700 transition-all duration-300 text-xl font-medium animate-slide-in"
           >
-            Shop Now
+            Explore Now
           </button>
         </div>
       </section>
 
       {/* ========== FOOTER ========== */}
-      <footer className="w-full py-12 mt-20 px-6 border-t border-gray-200">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
-          
+      <footer className="w-full py-12 mt-16 bg-blue-800 text-white px-6">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
           {/* Brand Section */}
-          <div>
-            <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-xl hover:bg-opacity-70 transition-all duration-300">
+            <div className="flex items-center justify-center sm:justify-start gap-3 mb-4">
               <img
                 src="https://www.pngmart.com/files/12/Shopee-Logo-Transparent-Background.png"
                 alt="Brand Logo"
                 className="w-10 h-10"
               />
-              <h2 className="text-2xl font-bold text-blue-800">ShoppyGlobe</h2>
+              <h2 className="text-2xl font-bold">ShoppyGlobe</h2>
             </div>
-            <p className="text-gray-600 text-sm">
-              Your one-stop destination for the best online shopping experience.
+            <p className="text-white text-sm max-w-xs mx-auto sm:mx-0">
+              Your go-to hub for a thrilling shopping spree!
             </p>
           </div>
 
           {/* Contact Section */}
-          <div>
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">Contact</h3>
-            <p className="text-gray-700 flex items-center justify-center md:justify-start gap-2 mb-2">
-              <LocalPhoneIcon className="text-orange-500" /> +91 72349 70151
+          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-xl hover:bg-opacity-70 transition-all duration-300">
+            <h3 className="text-lg font-medium mb-3">Connect With Us</h3>
+            <p className="text-white flex items-center justify-center sm:justify-start gap-2 mb-2 text-sm">
+              <LocalPhoneIcon className="text-teal-500" fontSize="small" />
+              +91 72349 70151
             </p>
-            <p className="text-gray-700 flex items-center justify-center md:justify-start gap-2">
-              <AttachEmailIcon className="text-orange-500" /> radheyraman30122000@gmail.com
+            <p className="text-white flex items-center justify-center sm:justify-start gap-2 text-sm">
+              <AttachEmailIcon className="text-teal-500" fontSize="small" />
+              radheyraman30122000@gmail.com
             </p>
           </div>
 
           {/* Social Media Icons */}
-          <div>
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">Follow Us</h3>
-            <div className="flex justify-center md:justify-start gap-6 text-3xl">
+          <div className="bg-blue-900 bg-opacity-50 p-6 rounded-xl hover:bg-opacity-70 transition-all duration-300">
+            <h3 className="text-lg font-medium mb-3">Join Our Vibe</h3>
+            <div className="flex justify-center sm:justify-start gap-4">
               {[
-                { icon: <InstagramIcon fontSize="inherit" />, href: '#' },
-                { icon: <LocalPhoneIcon fontSize="inherit" />, href: '#' },
-                { icon: <AttachEmailIcon fontSize="inherit" />, href: '#' }
+                {
+                  icon: <InstagramIcon />,
+                  href: 'https://www.instagram.com/atharvasingh8958/?hl=en',
+                },
+                { icon: <LocalPhoneIcon />, href: '#' },
+                { icon: <AttachEmailIcon />, href: '#' },
               ].map((item, i) => (
                 <a
                   key={i}
                   href={item.href}
-                  className="text-orange-500 hover:text-indigo-600 transition-transform transform hover:scale-110"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-teal-500 hover:text-teal-400 bg-white bg-opacity-10 p-2 rounded-full transition-all duration-200 hover:scale-105"
                 >
                   {item.icon}
                 </a>
@@ -92,8 +112,8 @@ const Body = () => {
         </div>
 
         {/* Footer Bottom Line */}
-        <div className="mt-10 border-t pt-4 text-center text-sm text-gray-500">
-          <span className="text-orange-500 font-bold">&copy;</span> 2025 ShoppyGlobe. All rights reserved.
+        <div className="mt-10 border-t border-sky-600 pt-4 text-center text-sm text-gray-200">
+          © 2025 <span className="text-teal-500 font-medium">ShoppyGlobe</span>. Crafted with ❤️ for shoppers everywhere.
         </div>
       </footer>
     </div>

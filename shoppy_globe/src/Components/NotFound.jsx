@@ -1,33 +1,28 @@
-// Components/NotFound.js
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const NotFound = () => {
-  const navigate = useNavigate(); // Hook to programmatically navigate to another route
+  const navigate = useNavigate();
 
   return (
-    // Full-screen container with center alignment and background gradient
-    <div className="h-screen w-screen flex flex-col items-center justify-center bg-gradient-to-br from-white to-orange-100 px-4">
-      
-      {/* Card-style container for the message */}
-      <div className="text-center bg-white/80 backdrop-blur-md p-10 rounded-3xl shadow-lg border border-orange-200 max-w-lg">
-        
-        {/* Large 404 heading */}
-        <h1 className="text-6xl font-bold text-orange-500 mb-4">404</h1>
+    <div className="h-screen w-screen flex flex-col items-center justify-center bg-gradient-to-t from-sky-100 to-white px-4">
+      {/* Card-style container */}
+      <div className="text-center bg-white/90 backdrop-blur-sm p-12 rounded-2xl shadow-xl border border-sky-200 max-w-md animate-fade">
+        {/* Decorative 404 with emoji */}
+        <h1 className="text-7xl font-bold text-teal-500 mb-6 animate-pulse">404 🚫</h1>
 
         {/* Subheading */}
-        <h2 className="text-2xl font-semibold text-gray-800 mb-2">Page Not Found</h2>
+        <h2 className="text-3xl font-bold text-blue-900 mb-3">Page Not Found</h2>
 
         {/* Description message */}
-        <p className="text-gray-600 mb-6">
+        <p className="text-lg text-blue-800 mb-8 font-medium max-w-sm">
           Sorry, the page you are looking for does not exist.
         </p>
 
         {/* Go Back button */}
         <button
-          onClick={() => navigate("/")} // Navigates to homepage
-          className="px-6 py-3 bg-orange-400 hover:bg-orange-500 text-white font-semibold rounded-xl shadow-md transition duration-300"
+          onClick={() => navigate('/')}
+          className="px-8 py-3 bg-sky-600 text-white font-medium rounded-full shadow-md hover:bg-sky-700 transition-all duration-300 animate-bounce"
         >
           Go Back Home
         </button>
@@ -37,4 +32,3 @@ const NotFound = () => {
 };
 
 export default NotFound;
-

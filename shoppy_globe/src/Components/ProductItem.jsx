@@ -8,42 +8,44 @@ const ProductItem = ({ item }) => {
   const Products = useSelector((state) => state.Products.items);
 
   return (
-    <div className="bg-white border border-gray-200 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition duration-300 ease-in-out overflow-hidden flex flex-col">
+    <div className="bg-white border border-sky-200 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 flex flex-col overflow-hidden animate-fade">
       {/* Product Image */}
       <img
         src={item.images?.[0] || '/placeholder.png'}
         alt={item.title || 'Product Image'}
-        className="w-full h-48 object-cover rounded-t-2xl"
+        className="w-full h-56 object-cover rounded-t-xl hover:scale-110 transition-transform duration-300"
       />
 
       {/* Product Info */}
-      <div className="p-4 flex flex-col justify-between flex-grow">
-        <h2 className="text-lg font-semibold text-gray-800 text-center mb-1">{item.title}</h2>
-        <p className="text-sm text-gray-600 text-center mb-2 line-clamp-2">
+      <div className="p-4 flex flex-col justify-between flex-grow space-y-3">
+        <h2 className="text-xl font-bold text-blue-900 text-center animate-pulse">
+          {item.title}
+        </h2>
+        <p className="text-sm text-blue-800 text-center line-clamp-2 font-medium">
           {item.description}
         </p>
 
         <div className="flex justify-between items-center mt-auto">
           {/* Price & Rating */}
           <div className="flex flex-col text-left">
-            <p className="text-xl font-bold text-yellow-500">${item.price}</p>
-            <p className="text-sm text-slate-500">{item.rating} ⭐</p>
+            <p className="text-lg font-bold text-teal-500">${item.price}</p>
+            <p className="text-sm text-teal-500">{item.rating} ⭐</p>
           </div>
 
           {/* Action Button */}
           <NavLink to={`/product/${item.id}`}>
-            <button className="bg-indigo-600 hover:bg-orange-500 text-white font-semibold px-4 py-2 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 text-sm">
+            <button className="bg-sky-600 hover:bg-sky-700 text-white font-medium px-4 py-2 rounded-full shadow-md transition-all duration-300 animate-bounce">
               View Details
             </button>
           </NavLink>
         </div>
 
-        {/* Optional: Add to Cart button */}
-         <button
+        {/* Add to Cart Button */}
+        <button
           onClick={() => dispatch(AddCartItem(item))}
-          className="mt-4 bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg transition-all"
+          className="mt-3 bg-teal-500 hover:bg-teal-600 text-white font-medium px-4 py-2 rounded-full shadow-md transition-all duration-300 animate-bounce"
         >
-          Add to Cart
+          🛒 Add to Cart
         </button>
       </div>
     </div>
